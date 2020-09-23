@@ -493,9 +493,17 @@ input[type="radio"]:not(:checked) + label:after {
   background-color: transparent;
 }
 header label {
-  margin-left: 15px;
+  margin: 0 15px;
   position: relative;
   -webkit-transform: translateY(0.1em) translateX(0.5em);
+}
+.toggleTheme {
+  display: inline-block;
+  border: 1px solid #f00;
+  width: 6rem;
+  height: 2rem;
+  margin: 0 1em;
+  line-height: 2.5em;
 }
 .copyright {
   font-size: 14px;
