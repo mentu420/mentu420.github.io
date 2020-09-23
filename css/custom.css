@@ -1,0 +1,56 @@
+.archive-item {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 10px;
+  padding-top: 25px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 2px rgba(202,203,203,0.5);
+  -moz-box-shadow: 0 0 2px rgba(202,203,204,0.5);
+  overflow: hidden;
+}
+.archive-item:hover {
+  -webkit-box-shadow: 0 0 4px rgba(202,203,203,0.7);
+  -moz-box-shadow: 0 0 4px rgba(202,203,204,0.7);
+}
+.post-wrap .archive-item {
+  margin: 0.5rem;
+  background-color: $light-post-archive-background-color;
+}
+.archive-item-link {
+  white-space: normal;
+}
+.tag-cloud-tags a {
+  padding: 0.2rem 0.6rem;
+  border-radius: 5px;
+  background-color: $light-post-archive-background-color;
+}
+.dark-theme .tag-cloud-tags a,
+.dark-theme .post-wrap .archive-item {
+  background-color: $dark-post-archive-background-color;
+}
+.post-nav {
+  margin-top: 2rem;
+}
+.post-nav a {
+  width: 50%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.post-nav a.prev,
+.post-nav a.next {
+  font-weight: 400;
+  font-size: 14px;
+}
+.post-nav a.next {
+  text-align: right;
+}
+.post-content {
+  overflow: hidden;
+  text-align: left;
+}
+@media (max-width: 767px) {
+  .post-wrap .categories-card {
+    padding: 0;
+  }
+}

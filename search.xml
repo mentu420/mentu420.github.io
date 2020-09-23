@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[vscode vue文件代码片段]]></title>
+    <url>%2F2020%2F09%2F02%2FvueCodeSinppet%2F</url>
+    <content type="text"><![CDATA[vue.json 文件 &#123; &quot;Print to console&quot;: &#123; &quot;prefix&quot;: &quot;vue&quot;, &quot;body&quot;: [ &quot;&lt;template&gt;&quot;, &quot;\t&lt;div&gt;\n&quot;, &quot;\t&lt;/div&gt;&quot;, &quot;&lt;/template&gt;\n&quot;, &quot;&lt;script&gt;&quot;, &quot;export default &#123;&quot;, &quot;\tname:&apos;$&#123;TM_FILENAME_BASE&#125;&apos;,&quot;, &quot;\tcomponents: &#123;\n&quot;, &quot;\t&#125;,&quot;, &quot;\tprops: &#123;\n&quot;, &quot;\t&#125;,&quot;, &quot;\tdata() &#123;&quot;, &quot;\t\treturn &#123;\n&quot;, &quot;\t\t&#125;;&quot;, &quot;\t&#125;,&quot;, &quot;\tcomputed: &#123;\n&quot;, &quot;\t&#125;,&quot;, &quot;\twatch: &#123;\n&quot;, &quot;\t&#125;,&quot;, &quot;\tcreated() &#123;\n&quot;, &quot;\t&#125;,&quot;, &quot;\tmounted() &#123;\n&quot;, &quot;\t&#125;,&quot;, &quot;\tmethods: &#123;\n&quot;, &quot;\t&#125;,&quot;, &quot;&#125;;&quot;, &quot;&lt;/script&gt;\n&quot;, &quot;&lt;style scoped lang=\&quot;$&#123;1:scss&#125;\&quot;&gt;\n&quot;, &quot;&lt;/style&gt;\n&quot;, ], &quot;description&quot;: &quot;Create vue template&quot; &#125; &#125;]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[vue项目命名规范总结]]></title>
+    <url>%2F2020%2F09%2F02%2FvueStandardName%2F</url>
+    <content type="text"><![CDATA[做公司项目时，发现项目的文件很乱；命名不统一。找文件组件造成很大障碍，文件识别性低；参考了一些网上规范与官网说明，自己总结一套，以后就套用这套 目录 项目结构 src文件结构 views文件里面命名规则 vue文件命名规则 js文件命名规则 vue单文件script结构 vue单文件method自定义方法命名规则 参考 项目结构 项目结构就按vue项目一样就好，主要是src里面的文件命名规范 src文件 所以的子文件夹 src - api //存放请求接口相关文件 - assets //静态资源文件夹 - images //图片 可以再创建文件夹common、icon、basic等 - fonts //应用的字体 - iconfont //图标字体 - styles //样式表文件 - components //组件文件 - basic //基础组件（一些button、switch、radio等） - common //常用组件（搜索、手风琴、列表等） - layout //布局组件（顶部、底部、滑动等） ... - constants //常量（存放一些权限、url配置或其他不变的文件） - mixins //vue mixins (组件公用的一些逻辑) - views //页面文件 （命名下面详细说） - router //路由文件 - store //vuex文件 - modules //vuex 模块 （一定要设置模块名namespaced:true） - utils //工具函数（自己封装的） - libs //工具函数（第三方库引用，进行了一些修改） views文件里面命名规则 views文件命名也套用于components，components尽量只做一级目录。 1.一级目录 代表模块的名字尽量由名词组成单词只有一个文件夹名字以小写字母开头,.vue文件名字以大写字母开头只有一个文件时不出现文件夹，直接放在 views 下面,为***.vue文件如 main | login | common,Main.vue | Login.vue | Common.vue 2.二级目录 代表着一级目录中某一大模块的名字尽量由名词组成名字至少两个单词文件夹名字以小写字母开头,.vue文件名字以大写字母开头只有一个文件时不出现文件夹，直接放在 一级目录 下面,为***.vue文件常用结尾单词有 Detail | Edit | List | Info | Report,如 SolutionList以 Item 结尾的代表着组件,如 SolutionItem vue文件命名规则 除index.vue之外，其他.vue文件统一用PascalBase风格 js文件命名规则 属于类的.js文件，除index.js外，使用PascalBase风格其他类型的.js文件，使用kebab-case风格属于Api的，统一加上api后缀 vue单文件script结构1.name2.components3.props4.data5.filter6.computed7.watch8.created9.mounted10.activited11.update12.beforeRouteUpdate13.metods metods 总放最后，如果有路由守护函数beforeRouteLeave放methods前面 vscode 可以自定义代码片段进行快速编码vue代码片段 vue单文件method自定义方法命名规则 mapMutations 放在最前面init 作为组件初始化函数驼峰命名（good: getListData）（bad: get_list_data、getlistData）事件方法以 on 开头（onTypeChange、onUsernameInput）尽量使用常用单词开头（set、get、open、close、jump）动宾短语（good：jumpPage、openCarInfoDialog）（bad：go、nextPage、show、open、login）ajax 方法以 get、post 开头，以 data 结尾（good：getListData、postFormData）（bad：takeData、confirmData、getList、postForm） 参考vue风格指南【Vue】教程:二、命名规范Vue命名规范VUE项目规范Vue项目文件命名规范]]></content>
+      <categories>
+        <category>总结</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[vue-cli4 配置多环境变量]]></title>
+    <url>%2F2020%2F08%2F24%2FvueMoreENV%2F</url>
+    <content type="text"><![CDATA[配置多环境变量在根目录添加 .env.xxx 来配置多环境 通过在 package.json 里的 scripts 配置项中添加–mode xxx 来选择不同环境 只有以 VUE_APP 开头的变量会被 webpack.DefinePlugin 静态嵌入到客户端侧的包中，代码中可以通过 process.env.VUE_APP_BASE_API 访问 NODE_ENV 和 BASE_URL 是两个特殊变量，在代码中始终可用 配置在项目根目录中新建.env.dev, .env.pre, .env.prd 文件 .env.dev NODE_ENV = "dev"VUE_APP_API_CD = "https://chandao.derucci.com:6443"VUE_APP_API_CM = "https://chandao.derucci.com:6443" .env.pre NODE_ENV = "pre"VUE_APP_API_CD = "https://agencytest.derucci.net"VUE_APP_API_CM = "https://mobiletest.derucci.net" .env.prd NODE_ENV = "prd"VUE_APP_API_CD = "https://agency.derucci.com"VUE_APP_API_CM = "https://derucci.net" &emsp;&emsp;修改 package.json "scripts": &#123; "serve:dev": "vue-cli-service serve --mode dev", "serve:pre": "vue-cli-service serve --mode pre", "serve:prd": "vue-cli-service serve --mode prd", "build:dev": "vue-cli-service build --mode dev", "build:pre": "vue-cli-service build --mode pre", "build:prd": "vue-cli-service build --mode prd",&#125; 安装调试yarn 调试、打包yarn serve:devyarn serve:preyarn serve:prdyarn build:devyarn build:preyarn build:prd]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[GIT常用操作]]></title>
+    <url>%2F2020%2F05%2F18%2FgitBranch%2F</url>
+    <content type="text"><![CDATA[目录 常用命令 合拼分支 删除某次合拼 创建分支并推送到远程 常用命令#查看分支：git branch#查看远程所有分支：git branch -a#创建分支：git branch &lt;name&gt;#切换分支：git checkout &lt;name&gt;#创建+切换分支：git checkout -b &lt;name&gt;#合并某分支到当前分支：git merge &lt;name&gt;#删除分支：git branch -d &lt;name&gt;#下载分支git clone --branch [tags标签] [git地址]git clone --branch solution-4 git@github.com:zspo/learngit.git#更新远程分支git pull origin 分支名称#推送远程分支git push origin 分支名称#推送本地的feature-branch(冒号前面的)分支到远程origin的feature-branch(冒号后面的)分支(没有会自动创建)git push origin feature-branch:feature-branch #删除远程仓库的分支git push origin :分支名称 #命令查看那些想过滤的文件是否被过滤掉git status -s 合拼不同分支1:切换分支比如同时有三个人开发，1.2最早是基于1.0，但是由于项目未发布，1.0,1.1,1.2全部都在同时开发，现在想把1.0已经增加的功能先合并到1.2 git checkout v1.0git checkout v1.2 2：然后再v1.2的分支基础上执行merge git merge v1.0 如果没有报错，那就直接提交代码git push origin v1.2如果报错，基本是冲突了(比如)：CONFLICT (content): Merge conflict in app/src/main/AndroidManifest.xmlAuto-merging app/build.gradleCONFLICT (content): Merge conflict in app/build.gradleAutomatic merge failed; fix conflicts and then commit the result.你需要去到提示的文件里把git自动标注的版本冲突注释掉，看你具体需要的功能进行删减然后把冲突的文件git add，和commit ，比如你有2个冲突文件，多文件add的时候直接空格隔开 3：最后推送到远程分支 git add .git commit -m &quot;解决2个分支的冲突&quot;git push origin v1.2 删除某次合拼1.查看commit记录 git log 2.使用revert 撤销 git revert d745fd35d849dd65b23d10737c6acb319b80cb8c -m 1 参考 创建分支并推送到远程git branch &lt;name&gt;git checkout &lt;name&gt;git push origin &lt;name&gt;]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[vue 使用input 移动端搜索框，让弹出键盘显示搜索按钮]]></title>
+    <url>%2F2020%2F05%2F18%2FinputSubmit%2F</url>
+    <content type="text"><![CDATA[vue 使用 input 移动端搜索框，让弹出键盘显示搜索按钮在移动端使用 input type=”search” 手机键盘出现搜索按钮 &lt;form @submit.prevent&gt; &lt;input type=&quot;search&quot;/&gt;&lt;/form&gt; 备注ios必须外包form标签，搜索按钮才会出现@submit.prevent vue使用，防止重载页面]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用css限制文本显示，文字长度超出部分用省略号表示]]></title>
+    <url>%2F2020%2F05%2F18%2FtextOverflowEllipsis%2F</url>
+    <content type="text"><![CDATA[使用css限制文本显示，文字长度超出部分用省略号表示为了保证页面的整洁美观，在很多的时候，我们常需要隐藏超出长度的文字。这在列表条目，题目，名称等地方常用到。 1：文本不换行 .line-limit-length &#123; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; //文本不换行，这样超出一行的部分被截取，显示...&#125; 2：文本换行,3行后超出显示省略号 .line-limit-length &#123; display : -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: $clamp; overflow : hidden; word-wrap: break-word;&#125;]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>style</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Welcome to Mentu420 Blod]]></title>
+    <url>%2F2020%2F05%2F18%2Fwelcome%2F</url>
+    <content type="text"><![CDATA[第二次在github搭建博客，之前搭建一个没有成功。以后将写一些学习的记录和心得。]]></content>
+      <categories>
+        <category>记录</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[react-native init XXX 卡在了info Installing required CocoaPods dependencies]]></title>
+    <url>%2F2019%2F09%2F18%2Fcocoapods%2F</url>
+    <content type="text"><![CDATA[新建react-native项目时发现在info Installing required CocoaPods卡住了，官网解决方法是0.60 及以上版本依赖CocoaPods安装。CocoaPods的仓库在国内也很难访问。如果在CocoaPods的安装步骤卡很久，可以试一下这个国内镜像 按照上面办法执行还是报错,暂时不知道原因 网上查原因，发现卡住是cocoapods资源库比较大原因，需要科学上网下载。 然后又发现科学上网下载也慢 最后只能自己安装pod依懒，下面是安装流程： 检查并卸载cocoapods1：检查是否安装过pod： which pod 出现路径：/usr/local/bin/pod /usr/local/bin/pod 2：输入密码并确认移除pod： sudo rm -rf /usr/local/bin/pod 3：查看cocoapods安装了哪些资源 gem list 4：卸载cocoapods资源库相关文件 sudo gem uninstall cocoapods 卸载相关资源文件 sudo gem uninstall cocoapods-xxx 二、修改镜像源cocoapods 下载慢是因为下载的是国外资源，这里改为国内的： 1：查看源： gem sources 2:移除源： gem sources --remove https://rubygems.org/ 在查看源，发现移除成功 3:修改源： gem sources -a https://gems.ruby-china.com/ 4:安装cocoapods资源库 sudo gem install -n /usr/local/bin cocoapods 安装pod pod setup 耐心等待，安装时间有点长 完成后运行 react-native init App cd App &amp;&amp; react-native run-ios]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>react-native</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[.md即markdown文件的基本常用编写语法]]></title>
+    <url>%2F2019%2F09%2F11%2Fmarkdown%2F</url>
+    <content type="text"><![CDATA[现在的前端基本上都用上了前端构建工具，那就难免要写一些readme等等的说明性文件，但是这样的文件一般都是.md的文件，编写的语法自然跟其他格式的文件有所区别,下面简单记录下markdown文件的语法。 正文书写方式： 标题 使用 # 表示一级标题使用 ## 表示二级标题使用 ### 表示三级标题分别表示h1-h6,只到h6，而且h1下面会有一条横线，注意，#号后面有空格 列表 使用 * 、 + 、 - 表示无序列表使用阿拉伯数字表示有序列表. 分割线 使用 * 、 _ 、 - 表示分割线，符号至少3个 链接 使用 [] 来标记，如：[百度](http://www.baidu.com) 图片 使用 ![] 来标记，根链接相似，前面必须加 !,如：![百度logo](https://www.baidu.com/img/bd_logo1.png?where=super) 代码框 使用 反引号， 注意：单行使用 ,多行使用 ``` ,上面3个下面3个 删除线 使用 ~~ ~~ 如：~~删除~~ 字体、字号与颜色 &lt;font face=”黑体” size=7 coloc=red&gt;字体黑体，字号7，颜色红&lt;/font&gt;&lt;font STCAIYUN=”微软雅黑” size=3 coloc=”#000”&gt;字体微软雅黑，字号3，颜色黑色&lt;/font&gt;Size：规定文本的尺寸大小。可能的值：从 1 到 7 的数字。浏览器默认值是 3 锚点跳转 起点：[标题](#jump)终点：&lt;span id=”jump”&gt;标题&lt;/span&gt;还有表格、转义字符就不一一列举了。]]></content>
+      <categories>
+        <category>记录</category>
+      </categories>
+      <tags>
+        <tag>知识</tag>
+      </tags>
+  </entry>
+</search>
