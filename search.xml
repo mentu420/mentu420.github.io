@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>react-native init XXX 卡在了info Installing required CocoaPods dependencies</title>
+    <url>/2019/09/18/cocoapods/</url>
+    <content><![CDATA[<p>新建react-native项目时发现在info Installing required CocoaPods卡住了，官网解决方法是0.60 及以上版本依赖CocoaPods安装。CocoaPods的仓库在国内也很难访问。如果在CocoaPods的安装步骤卡很久，可以试一下这个<a href="https://mirror.tuna.tsinghua.edu.cn/help/CocoaPods/">国内镜像</a></p>
+<span id="more"></span>
+
+<p><font color="red">按照上面办法执行还是报错,暂时不知道原因</font></p>
+<p>网上查原因，发现卡住是cocoapods资源库比较大原因，需要科学上网下载。</p>
+<p><font color="red">然后又发现科学上网下载也慢</font></p>
+<p>最后只能自己安装pod依懒，下面是安装流程：</p>
+<h3 id="检查并卸载cocoapods"><a href="#检查并卸载cocoapods" class="headerlink" title="检查并卸载cocoapods"></a>检查并卸载cocoapods</h3><p>1：检查是否安装过pod：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">which pod</span><br></pre></td></tr></table></figure>
+<p>出现路径：&#x2F;usr&#x2F;local&#x2F;bin&#x2F;pod</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/usr/local/bin/pod</span><br></pre></td></tr></table></figure>
+
+<p>2：输入密码并确认移除pod：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo rm -rf /usr/local/bin/pod</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/mentu420/image-storage/master/blog/cocoapods-3.png" alt="图片"></p>
+<p>3：查看cocoapods安装了哪些资源</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gem list</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/mentu420/image-storage/master/blog/cocoapods-1.png" alt="详情"></p>
+<p>4：卸载cocoapods资源库相关文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo gem uninstall cocoapods</span><br></pre></td></tr></table></figure>
+<p>卸载相关资源文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo gem uninstall cocoapods-xxx</span><br></pre></td></tr></table></figure>
+
+<h3 id="二、修改镜像源"><a href="#二、修改镜像源" class="headerlink" title="二、修改镜像源"></a>二、修改镜像源</h3><p>cocoapods 下载慢是因为下载的是国外资源，这里改为国内的：</p>
+<p>1：查看源：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gem sources</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/mentu420/image-storage/master/blog/cocoapods-2.png" alt="图片"></p>
+<p>2:移除源：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gem sources --remove https://rubygems.org/</span><br></pre></td></tr></table></figure>
+<p>在查看源，发现移除成功</p>
+<p>3:修改源：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gem sources -a https://gems.ruby-china.com/</span><br></pre></td></tr></table></figure>
+
+<p>4:安装cocoapods资源库</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo gem install -n /usr/local/bin cocoapods</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/mentu420/image-storage/master/blog/cocoapods-4.png" alt="图片"></p>
+<p>安装pod</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pod setup</span><br></pre></td></tr></table></figure>
+<p>耐心等待，安装时间有点长</p>
+<p><img src="https://raw.githubusercontent.com/mentu420/image-storage/master/blog/cocoapods-5.png" alt="图片"></p>
+<p>完成后运行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">react-native init App</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/mentu420/image-storage/master/blog/cocoapods-6.png" alt="图片"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd App &amp;&amp; react-native run-ios</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/mentu420/image-storage/master/blog/cocoapods-7.png" alt="图片"></p>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>react-native</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git 创建一个分支并且合并某个commit</title>
+    <url>/2024/07/04/git-cherry-pick/</url>
+    <content><![CDATA[<p>在 Git 中创建一个新分支并将特定的提交（commit）合并到这个新分支的过程涉及几个步骤。下面是详细的指南：</p>
+<h3 id="步骤-1-创建新分支"><a href="#步骤-1-创建新分支" class="headerlink" title="步骤 1: 创建新分支"></a>步骤 1: 创建新分支</h3><p>首先，确保你的本地仓库是最新的。在你的终端中执行以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 更新你的本地仓库</span><br><span class="line">git fetch origin</span><br><span class="line"></span><br><span class="line"># 切换到你想要基于的分支，通常是 master 或 main</span><br><span class="line">git checkout master</span><br></pre></td></tr></table></figure>
+
+<p>创建一个新的分支：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 创建并切换到新分支</span><br><span class="line">git checkout -b new-branch-name</span><br></pre></td></tr></table></figure>
+
+<p>这里 new-branch-name 是你新分支的名称。</p>
+<h3 id="步骤-2-找到并检出特定的提交"><a href="#步骤-2-找到并检出特定的提交" class="headerlink" title="步骤 2: 找到并检出特定的提交"></a>步骤 2: 找到并检出特定的提交</h3><p>你可以使用 git log 命令来查找你想要合并的特定提交的 commit ID。这个命令会显示每个提交的详细日志，包括提交的哈希值（commit hash）。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git log --oneline</span><br></pre></td></tr></table></figure>
+
+<p>这将显示一个简化的提交历史。找到你想要合并的提交的哈希值（例如 a1b2c3d）。</p>
+<h3 id="步骤-3-将特定提交合并到新分支"><a href="#步骤-3-将特定提交合并到新分支" class="headerlink" title="步骤 3: 将特定提交合并到新分支"></a>步骤 3: 将特定提交合并到新分支</h3><p>你可以使用 git cherry-pick 命令来选择一个特定的提交并将其应用到当前分支：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git cherry-pick a1b2c3d</span><br></pre></td></tr></table></figure>
+
+<p>这里 a1b2c3d 是你想要合并的提交的哈希值。这个命令会将该提交的更改应用到你当前的分支上（即 new-branch-name）。</p>
+<h3 id="步骤-4-解决可能的冲突"><a href="#步骤-4-解决可能的冲突" class="headerlink" title="步骤 4: 解决可能的冲突"></a>步骤 4: 解决可能的冲突</h3><p>如果在 cherry-pick 过程中遇到冲突，Git 会停止让你解决冲突。你需要手动编辑文件以解决这些冲突，然后将它们标记为已解决：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line"># 完成冲突解决后，继续 cherry-pick 过程：</span><br><span class="line">git cherry-pick --continue</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="步骤-5-推送新分支到远程仓库"><a href="#步骤-5-推送新分支到远程仓库" class="headerlink" title="步骤 5: 推送新分支到远程仓库"></a>步骤 5: 推送新分支到远程仓库</h3><p>一旦本地更改完成并且所有冲突都已解决，你可以将新分支推送到远程仓库：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push origin new-branch-name</span><br></pre></td></tr></table></figure>
+
+<p>这样，你就成功地创建了一个新分支并将特定的提交合并到这个分支上了。这些步骤对于从一个分支获取特定的提交并应用到另一个分支非常有用，尤其是在修复错误或将功能从一个项目分支移植到另一个分支时。</p>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GIT常用操作</title>
+    <url>/2020/05/18/gitBranch/</url>
+    <content><![CDATA[<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li><a href="#common">常用命令</a></li>
+<li><a href="#merge">合拼分支</a></li>
+<li><a href="#del-merge">删除某次合拼</a></li>
+<li><a href="#create-branch">创建分支并推送到远程</a></li>
+</ul>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a><span id="common">常用命令</span></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#查看分支：</span><br><span class="line">git branch</span><br><span class="line"></span><br><span class="line">#查看远程所有分支：</span><br><span class="line">git branch -a</span><br><span class="line"></span><br><span class="line">#创建分支：</span><br><span class="line">git branch &lt;name&gt;</span><br><span class="line"></span><br><span class="line">#切换分支：</span><br><span class="line">git checkout &lt;name&gt;</span><br><span class="line"></span><br><span class="line">#创建+切换分支：</span><br><span class="line">git checkout -b &lt;name&gt;</span><br><span class="line"></span><br><span class="line">#合并某分支到当前分支：</span><br><span class="line">git merge &lt;name&gt;</span><br><span class="line"></span><br><span class="line">#删除分支：</span><br><span class="line">git branch -d &lt;name&gt;</span><br><span class="line"></span><br><span class="line">#下载分支</span><br><span class="line">git clone --branch [tags标签] [git地址]</span><br><span class="line">git clone --branch solution-4 git@github.com:zspo/learngit.git</span><br><span class="line"></span><br><span class="line">#更新远程分支</span><br><span class="line">git pull origin 分支名称</span><br><span class="line"></span><br><span class="line">#推送远程分支</span><br><span class="line">git push origin 分支名称</span><br><span class="line"></span><br><span class="line">#推送本地的feature-branch(冒号前面的)分支到远程origin的feature-branch(冒号后面的)分支(没有会自动创建)</span><br><span class="line">git push origin feature-branch:feature-branch  </span><br><span class="line"></span><br><span class="line">#删除远程仓库的分支</span><br><span class="line">git push origin :分支名称 </span><br><span class="line"></span><br><span class="line">#命令查看那些想过滤的文件是否被过滤掉</span><br><span class="line">git status -s</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="合拼不同分支"><a href="#合拼不同分支" class="headerlink" title="合拼不同分支"></a><span id="merge">合拼不同分支</span></h3><p>1:切换分支<br>比如同时有三个人开发，1.2最早是基于1.0，但是由于项目未发布，1.0,1.1,1.2全部都在同时开发，现在想把1.0已经增加的功能先合并到1.2</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout v1.0</span><br><span class="line">git checkout v1.2</span><br></pre></td></tr></table></figure>
+
+<p>2：然后再v1.2的分支基础上执行merge</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git merge v1.0</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果没有报错，那就直接提交代码git push origin v1.2<br>如果报错，基本是冲突了(比如)：<br>CONFLICT (content): Merge conflict in app&#x2F;src&#x2F;main&#x2F;AndroidManifest.xml<br>Auto-merging app&#x2F;build.gradle<br>CONFLICT (content): Merge conflict in app&#x2F;build.gradle<br>Automatic merge failed; fix conflicts and then commit the result.<br>你需要去到提示的文件里把git自动标注的版本冲突注释掉，看你具体需要的功能进行删减<br>然后把冲突的文件git add，和commit ，比如你有2个冲突文件，多文件add的时候直接空格隔开</p>
+</blockquote>
+<p>3：最后推送到远程分支</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;解决2个分支的冲突&quot;</span><br><span class="line">git push origin v1.2</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除某次合拼"><a href="#删除某次合拼" class="headerlink" title="删除某次合拼"></a><span id="del-merge">删除某次合拼</span></h3><p>1.查看commit记录</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git log</span><br></pre></td></tr></table></figure>
+<p><img src="#https://github.com/mentu420/image-storage/blob/master/blog/commit-id.png" alt="合拼2.8.0 commit id"></p>
+<p>2.使用revert 撤销</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git revert d745fd35d849dd65b23d10737c6acb319b80cb8c -m 1</span><br></pre></td></tr></table></figure>
+<p><a href="#https://learnku.com/articles/31705">参考</a></p>
+<h3 id="创建分支并推送到远程"><a href="#创建分支并推送到远程" class="headerlink" title="创建分支并推送到远程"></a><span id="create-branch">创建分支并推送到远程</span></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch &lt;name&gt;</span><br><span class="line">git checkout &lt;name&gt;</span><br><span class="line">git push origin &lt;name&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue 使用input 移动端搜索框，让弹出键盘显示搜索按钮</title>
+    <url>/2020/05/18/inputSubmit/</url>
+    <content><![CDATA[<h3 id="vue-使用-input-移动端搜索框，让弹出键盘显示搜索按钮"><a href="#vue-使用-input-移动端搜索框，让弹出键盘显示搜索按钮" class="headerlink" title="vue 使用 input 移动端搜索框，让弹出键盘显示搜索按钮"></a>vue 使用 input 移动端搜索框，让弹出键盘显示搜索按钮</h3><p>在移动端使用 input type&#x3D;”search” 手机键盘出现搜索按钮</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;form @submit.prevent&gt;</span><br><span class="line">    &lt;input type=&quot;search&quot;/&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><font color=red>备注</font><br>ios必须外包form标签，搜索按钮才会出现<br>@submit.prevent vue使用，防止重载页面</p>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>.md即markdown文件的基本常用编写语法</title>
+    <url>/2019/09/11/markdown/</url>
+    <content><![CDATA[<p>现在的前端基本上都用上了前端构建工具，那就难免要写一些readme等等的说明性文件，但是这样的文件一般都是.md的文件，编写的语法自然跟其他格式的文件有所区别,下面简单记录下markdown文件的语法。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>正文书写方式：</p>
+<ul>
+<li><p>标题</p>
+<blockquote>
+<p>使用 # 表示一级标题<br>使用 ## 表示二级标题<br>使用 ### 表示三级标题<br>分别表示h1-h6,只到h6，而且h1下面会有一条横线，注意，#号后面有空格</p>
+</blockquote>
+</li>
+<li><p>列表</p>
+<blockquote>
+<p>使用 * 、 + 、 - 表示无序列表<br>使用阿拉伯数字表示有序列表.</p>
+</blockquote>
+</li>
+<li><p>分割线</p>
+<blockquote>
+<p>使用 * 、 _ 、 - 表示分割线，符号至少3个</p>
+</blockquote>
+</li>
+<li><p>链接</p>
+<blockquote>
+<p>使用 [] 来标记，如：[百度](<a href="http://www.baidu.com/">http://www.baidu.com</a>)</p>
+</blockquote>
+</li>
+<li><p>图片</p>
+<blockquote>
+<p>使用 ![] 来标记，根链接相似，前面必须加 !,如：![百度logo](<a href="https://www.baidu.com/img/bd_logo1.png?where=super">https://www.baidu.com/img/bd_logo1.png?where=super</a>)</p>
+</blockquote>
+</li>
+<li><p>代码框</p>
+<blockquote>
+<p>使用 <code>反引号， 注意：单行使用</code> ,多行使用 &#96;&#96;&#96; ,上面3个下面3个</p>
+</blockquote>
+</li>
+<li><p>删除线</p>
+<blockquote>
+<p>使用 ~~ ~~ 如：~~删除~~</p>
+</blockquote>
+</li>
+<li><p>字体、字号与颜色  </p>
+<blockquote>
+<p>&lt;font face&#x3D;”黑体” size&#x3D;7 coloc&#x3D;red&gt;字体黑体，字号7，颜色红&lt;&#x2F;font&gt;<br>&lt;font STCAIYUN&#x3D;”微软雅黑” size&#x3D;3 coloc&#x3D;”#000”&gt;字体微软雅黑，字号3，颜色黑色&lt;&#x2F;font&gt;<br>Size：规定文本的尺寸大小。可能的值：从 1 到 7 的数字。浏览器默认值是 3</p>
+</blockquote>
+</li>
+<li><p>锚点跳转</p>
+<blockquote>
+<p>起点：[标题](#jump)<br>终点：&lt;span id&#x3D;”jump”&gt;标题&lt;&#x2F;span&gt;<br>还有表格、转义字符就不一一列举了。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<hr>
+]]></content>
+      <categories>
+        <category>记录</category>
+      </categories>
+      <tags>
+        <tag>知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue-cli4 配置多环境变量</title>
+    <url>/2020/08/24/vueMoreENV/</url>
+    <content><![CDATA[<h1 id="配置多环境变量"><a href="#配置多环境变量" class="headerlink" title="配置多环境变量"></a>配置多环境变量</h1><p>在根目录添加 .env.xxx 来配置多环境</p>
+<p>通过在 package.json 里的 scripts 配置项中添加–mode xxx 来选择不同环境</p>
+<p>只有以 VUE_APP 开头的变量会被 webpack.DefinePlugin 静态嵌入到客户端侧的包中，代码中可以通过 process.env.VUE_APP_BASE_API 访问</p>
+<p>NODE_ENV 和 BASE_URL 是两个特殊变量，在代码中始终可用</p>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>在项目根目录中新建.env.dev, .env.pre, .env.prd 文件</p>
+<ul>
+<li>.env.dev</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable constant_">NODE_ENV</span> = <span class="string">&quot;dev&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable constant_">VUE_APP_API_CD</span> = <span class="string">&quot;https://chandao.derucci.com:6443&quot;</span></span><br><span class="line"><span class="variable constant_">VUE_APP_API_CM</span> = <span class="string">&quot;https://chandao.derucci.com:6443&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>.env.pre</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable constant_">NODE_ENV</span> = <span class="string">&quot;pre&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable constant_">VUE_APP_API_CD</span> = <span class="string">&quot;https://agencytest.derucci.net&quot;</span></span><br><span class="line"><span class="variable constant_">VUE_APP_API_CM</span> = <span class="string">&quot;https://mobiletest.derucci.net&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>.env.prd</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable constant_">NODE_ENV</span> = <span class="string">&quot;prd&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable constant_">VUE_APP_API_CD</span> = <span class="string">&quot;https://agency.derucci.com&quot;</span></span><br><span class="line"><span class="variable constant_">VUE_APP_API_CM</span> = <span class="string">&quot;https://derucci.net&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;修改 package.json</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;serve:dev&quot;</span>: <span class="string">&quot;vue-cli-service serve --mode dev&quot;</span>,</span><br><span class="line">    <span class="string">&quot;serve:pre&quot;</span>: <span class="string">&quot;vue-cli-service serve --mode pre&quot;</span>,</span><br><span class="line">    <span class="string">&quot;serve:prd&quot;</span>: <span class="string">&quot;vue-cli-service serve --mode prd&quot;</span>,</span><br><span class="line">    <span class="string">&quot;build:dev&quot;</span>: <span class="string">&quot;vue-cli-service build --mode dev&quot;</span>,</span><br><span class="line">    <span class="string">&quot;build:pre&quot;</span>: <span class="string">&quot;vue-cli-service build --mode pre&quot;</span>,</span><br><span class="line">    <span class="string">&quot;build:prd&quot;</span>: <span class="string">&quot;vue-cli-service build --mode prd&quot;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="安装调试"><a href="#安装调试" class="headerlink" title="安装调试"></a>安装调试</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">yarn</span><br></pre></td></tr></table></figure>
+
+<h5 id="调试、打包"><a href="#调试、打包" class="headerlink" title="调试、打包"></a>调试、打包</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">yarn <span class="attr">serve</span>:dev</span><br><span class="line">yarn <span class="attr">serve</span>:pre</span><br><span class="line">yarn <span class="attr">serve</span>:prd</span><br><span class="line"></span><br><span class="line">yarn <span class="attr">build</span>:dev</span><br><span class="line">yarn <span class="attr">build</span>:pre</span><br><span class="line">yarn <span class="attr">build</span>:prd</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vscode vue文件代码片段</title>
+    <url>/2020/09/02/vueCodeSinppet/</url>
+    <content><![CDATA[<blockquote>
+<p>vue.json 文件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;Print to console&quot;: &#123;</span><br><span class="line">	   &quot;prefix&quot;: &quot;vue&quot;,</span><br><span class="line">	   &quot;body&quot;: [</span><br><span class="line">		  &quot;&lt;template&gt;&quot;,</span><br><span class="line">		  &quot;\t&lt;div&gt;\n&quot;,</span><br><span class="line">		  &quot;\t&lt;/div&gt;&quot;,</span><br><span class="line">		  &quot;&lt;/template&gt;\n&quot;,</span><br><span class="line">		  &quot;&lt;script&gt;&quot;,</span><br><span class="line">		  &quot;export default &#123;&quot;,</span><br><span class="line">		  &quot;\tname:&#x27;$&#123;TM_FILENAME_BASE&#125;&#x27;,&quot;,</span><br><span class="line">		  &quot;\tcomponents: &#123;\n&quot;,</span><br><span class="line">		  &quot;\t&#125;,&quot;,</span><br><span class="line">		  &quot;\tprops: &#123;\n&quot;,</span><br><span class="line">		  &quot;\t&#125;,&quot;,</span><br><span class="line">		  &quot;\tdata() &#123;&quot;,</span><br><span class="line">		  &quot;\t\treturn &#123;\n&quot;,</span><br><span class="line">		  &quot;\t\t&#125;;&quot;,</span><br><span class="line">		  &quot;\t&#125;,&quot;,</span><br><span class="line">		  &quot;\tcomputed: &#123;\n&quot;,</span><br><span class="line">		  &quot;\t&#125;,&quot;,</span><br><span class="line">		  &quot;\twatch: &#123;\n&quot;,</span><br><span class="line">		  &quot;\t&#125;,&quot;,</span><br><span class="line">		  &quot;\tcreated() &#123;\n&quot;,</span><br><span class="line">		  &quot;\t&#125;,&quot;,</span><br><span class="line">		  &quot;\tmounted() &#123;\n&quot;,</span><br><span class="line">		  &quot;\t&#125;,&quot;,</span><br><span class="line">		  &quot;\tmethods: &#123;\n&quot;,</span><br><span class="line">		  &quot;\t&#125;,&quot;,</span><br><span class="line">		  &quot;&#125;;&quot;,</span><br><span class="line">		  &quot;&lt;/script&gt;\n&quot;,</span><br><span class="line">		  &quot;&lt;style scoped lang=\&quot;$&#123;1:scss&#125;\&quot;&gt;\n&quot;,</span><br><span class="line">		  &quot;&lt;/style&gt;\n&quot;,</span><br><span class="line">	   ],</span><br><span class="line">	   &quot;description&quot;: &quot;Create vue template&quot;</span><br><span class="line">	&#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用css限制文本显示，文字长度超出部分用省略号表示</title>
+    <url>/2020/05/18/textOverflowEllipsis/</url>
+    <content><![CDATA[<h3 id="使用css限制文本显示，文字长度超出部分用省略号表示"><a href="#使用css限制文本显示，文字长度超出部分用省略号表示" class="headerlink" title="使用css限制文本显示，文字长度超出部分用省略号表示"></a>使用css限制文本显示，文字长度超出部分用省略号表示</h3><p>为了保证页面的整洁美观，在很多的时候，我们常需要隐藏超出长度的文字。这在列表条目，题目，名称等地方常用到。</p>
+<p>1：文本不换行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.line-limit-length &#123;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">    white-space: nowrap; //文本不换行，这样超出一行的部分被截取，显示...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2：文本换行,3行后超出显示省略号</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.line-limit-length &#123;</span><br><span class="line">    display   : -webkit-box;</span><br><span class="line">    -webkit-box-orient: vertical;</span><br><span class="line">    -webkit-line-clamp: $clamp;</span><br><span class="line">    overflow  : hidden;</span><br><span class="line">    word-wrap: break-word;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>style</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue项目命名规范总结</title>
+    <url>/2020/09/02/vueStandardName/</url>
+    <content><![CDATA[<blockquote>
+<p>做公司项目时，发现项目的文件很乱；命名不统一。找文件组件造成很大障碍，文件识别性低；参考了一些网上规范与官网说明，自己总结一套，以后就套用这套</p>
+</blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li><a href="#prod">项目结构</a></li>
+<li><a href="#src">src文件结构</a></li>
+<li><a href="#view">views文件里面命名规则</a></li>
+<li><a href="#vue">vue文件命名规则</a></li>
+<li><a href="#js">js文件命名规则</a></li>
+<li><a href="#script">vue单文件script结构</a></li>
+<li><a href="#method">vue单文件method自定义方法命名规则</a></li>
+<li><a href="#reference">参考</a></li>
+</ul>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a><span id="prod">项目结构</span></h3><blockquote>
+<p>项目结构就按vue项目一样就好，主要是src里面的文件命名规范</p>
+</blockquote>
+<h3 id="src文件"><a href="#src文件" class="headerlink" title="src文件"></a><span id="src">src文件</span></h3><blockquote>
+<p>所以的子文件夹</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">src</span><br><span class="line">    - api             //存放请求接口相关文件</span><br><span class="line">    - assets          //静态资源文件夹</span><br><span class="line">        - images      //图片  可以再创建文件夹common、icon、basic等</span><br><span class="line">        - fonts       //应用的字体</span><br><span class="line">        - iconfont    //图标字体</span><br><span class="line">        - styles      //样式表文件</span><br><span class="line">    - components      //组件文件</span><br><span class="line">        - basic       //基础组件（一些button、switch、radio等）</span><br><span class="line">        - common      //常用组件（搜索、手风琴、列表等）</span><br><span class="line">        - layout      //布局组件（顶部、底部、滑动等）</span><br><span class="line">        ...         </span><br><span class="line">    - constants       //常量（存放一些权限、url配置或其他不变的文件）</span><br><span class="line">    - mixins          //vue mixins (组件公用的一些逻辑)</span><br><span class="line">    - views           //页面文件  （命名下面详细说）</span><br><span class="line">    - router          //路由文件</span><br><span class="line">    - store           //vuex文件</span><br><span class="line">        - modules     //vuex 模块 （一定要设置模块名namespaced:true）</span><br><span class="line">    - utils           //工具函数（自己封装的）</span><br><span class="line">    - libs            //工具函数（第三方库引用，进行了一些修改）</span><br></pre></td></tr></table></figure>
+
+<h3 id="views文件里面命名规则"><a href="#views文件里面命名规则" class="headerlink" title="views文件里面命名规则"></a><span id="views">views文件里面命名规则</span></h3><p> views文件命名也套用于components，components尽量只做一级目录。</p>
+<p>1.一级目录</p>
+<blockquote>
+<p>代表模块的名字<br>尽量由名词组成<br>单词只有一个<br>文件夹名字以小写字母开头,.vue文件名字以大写字母开头<br>只有一个文件时不出现文件夹，直接放在 views 下面,为***.vue文件<br>如 main | login | common,Main.vue | Login.vue | Common.vue</p>
+</blockquote>
+<p>2.二级目录</p>
+<blockquote>
+<p>代表着一级目录中某一大模块的名字<br>尽量由名词组成<br>名字至少两个单词<br>文件夹名字以小写字母开头,.vue文件名字以大写字母开头<br>只有一个文件时不出现文件夹，直接放在 一级目录 下面,为***.vue文件<br>常用结尾单词有 Detail | Edit | List | Info | Report,如 SolutionList<br>以 Item 结尾的代表着组件,如 SolutionItem</p>
+</blockquote>
+<h3 id="vue文件命名规则"><a href="#vue文件命名规则" class="headerlink" title="vue文件命名规则"></a><span id="vue">vue文件命名规则</span></h3><blockquote>
+<p>除index.vue之外，其他.vue文件统一用PascalBase风格</p>
+</blockquote>
+<h3 id="js文件命名规则"><a href="#js文件命名规则" class="headerlink" title="js文件命名规则"></a><span id="js">js文件命名规则</span></h3><blockquote>
+<p>属于类的.js文件，除index.js外，使用PascalBase风格<br>其他类型的.js文件，使用kebab-case风格<br>属于Api的，统一加上api后缀</p>
+</blockquote>
+<h3 id="vue单文件script结构"><a href="#vue单文件script结构" class="headerlink" title="vue单文件script结构"></a><span id="script">vue单文件script结构</span></h3><p>1.name<br>2.components<br>3.props<br>4.data<br>5.filter<br>6.computed<br>7.watch<br>8.created<br>9.mounted<br>10.activited<br>11.update<br>12.beforeRouteUpdate<br>13.metods</p>
+<blockquote>
+<p>metods 总放最后，如果有路由守护函数beforeRouteLeave放methods前面</p>
+</blockquote>
+<p>vscode 可以自定义代码片段进行快速编码<br><a href="http://localhost:4000/2020/09/02/vueCodeSinppet/">vue代码片段</a></p>
+<h3 id="vue单文件method自定义方法命名规则"><a href="#vue单文件method自定义方法命名规则" class="headerlink" title="vue单文件method自定义方法命名规则"></a><span id="method">vue单文件method自定义方法命名规则</span></h3><blockquote>
+<p>mapMutations 放在最前面<br>init 作为组件初始化函数<br>驼峰命名（good: getListData）（bad: get_list_data、getlistData）<br>事件方法以 on 开头（onTypeChange、onUsernameInput）<br>尽量使用常用单词开头（set、get、open、close、jump）<br>动宾短语（good：jumpPage、openCarInfoDialog）（bad：go、nextPage、show、open、login）<br>ajax 方法以 get、post 开头，以 data 结尾（good：getListData、postFormData）（bad：takeData、confirmData、getList、postForm）</p>
+</blockquote>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a><span id="reference">参考</span></h3><p><a href="https://cn.vuejs.org/v2/style-guide/">vue风格指南</a><br><a href="https://www.jianshu.com/p/6848c2cf3753">【Vue】教程:二、命名规范</a><br><a href="https://www.jianshu.com/p/99e67fc22ced">Vue命名规范</a><br><a href="https://www.jianshu.com/p/304d537284d7">VUE项目规范</a><br><a href="https://www.jianshu.com/p/bc62266c2948">Vue项目文件命名规范</a></p>
+]]></content>
+      <categories>
+        <category>总结</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Welcome to Mentu420 Blod</title>
+    <url>/2024/05/21/welcome/</url>
+    <content><![CDATA[<p>第二次在github搭建博客，之前搭建一个没有成功。以后将写一些学习的记录和心得。</p>
+]]></content>
+      <categories>
+        <category>记录</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+</search>

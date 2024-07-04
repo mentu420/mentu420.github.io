@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+   content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+<title>git 创建一个分支并且合并某个commit | Mentu420</title>
+
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+
+
+<!-- stylesheets list from _config.yml -->
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+<!-- scripts list from _config.yml -->
+
+<script src="/js/script.js"></script>
+
+<script src="/js/tocbot.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+   (function (i, s, o, g, r, a, m) { i["DaoVoiceObject"] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o), m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; a.charset = "utf-8"; m.parentNode.insertBefore(a, m) })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js", "daovoice")
+   daovoice('init', {
+      app_id: "86264bdc"
+   });
+   daovoice('update');
+</script>
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Disciple&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/">Home</a>
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Disciple&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/">Home</a>
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+   
+   
+   <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+   
+
+    
+   <article class="post-wrap">
+      <header class="post-header">
+         <h1 class="post-title">git 创建一个分支并且合并某个commit</h1>
+         
+         <div class="post-meta">
+            
+            Author: <a itemprop="author" rel="author" href="/">Men Tu</a>
+            
+
+            
+            <span class="post-time">
+               Date: <a
+                  href="#">July 4, 2024&nbsp;&nbsp;10:45:24</a>
+            </span>
+            
+            
+            <span class="post-category">
+               Category:
+               
+               <a href="/categories/programming/">编程</a>
+               
+            </span>
+            
+         </div>
+         
+      </header>
+
+      <div class="post-content">
+         <p>在 Git 中创建一个新分支并将特定的提交（commit）合并到这个新分支的过程涉及几个步骤。下面是详细的指南：</p>
+<h3 id="步骤-1-创建新分支"><a href="#步骤-1-创建新分支" class="headerlink" title="步骤 1: 创建新分支"></a>步骤 1: 创建新分支</h3><p>首先，确保你的本地仓库是最新的。在你的终端中执行以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 更新你的本地仓库</span><br><span class="line">git fetch origin</span><br><span class="line"></span><br><span class="line"># 切换到你想要基于的分支，通常是 master 或 main</span><br><span class="line">git checkout master</span><br></pre></td></tr></table></figure>
+
+<p>创建一个新的分支：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 创建并切换到新分支</span><br><span class="line">git checkout -b new-branch-name</span><br></pre></td></tr></table></figure>
+
+<p>这里 new-branch-name 是你新分支的名称。</p>
+<h3 id="步骤-2-找到并检出特定的提交"><a href="#步骤-2-找到并检出特定的提交" class="headerlink" title="步骤 2: 找到并检出特定的提交"></a>步骤 2: 找到并检出特定的提交</h3><p>你可以使用 git log 命令来查找你想要合并的特定提交的 commit ID。这个命令会显示每个提交的详细日志，包括提交的哈希值（commit hash）。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git log --oneline</span><br></pre></td></tr></table></figure>
+
+<p>这将显示一个简化的提交历史。找到你想要合并的提交的哈希值（例如 a1b2c3d）。</p>
+<h3 id="步骤-3-将特定提交合并到新分支"><a href="#步骤-3-将特定提交合并到新分支" class="headerlink" title="步骤 3: 将特定提交合并到新分支"></a>步骤 3: 将特定提交合并到新分支</h3><p>你可以使用 git cherry-pick 命令来选择一个特定的提交并将其应用到当前分支：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git cherry-pick a1b2c3d</span><br></pre></td></tr></table></figure>
+
+<p>这里 a1b2c3d 是你想要合并的提交的哈希值。这个命令会将该提交的更改应用到你当前的分支上（即 new-branch-name）。</p>
+<h3 id="步骤-4-解决可能的冲突"><a href="#步骤-4-解决可能的冲突" class="headerlink" title="步骤 4: 解决可能的冲突"></a>步骤 4: 解决可能的冲突</h3><p>如果在 cherry-pick 过程中遇到冲突，Git 会停止让你解决冲突。你需要手动编辑文件以解决这些冲突，然后将它们标记为已解决：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line"># 完成冲突解决后，继续 cherry-pick 过程：</span><br><span class="line">git cherry-pick --continue</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="步骤-5-推送新分支到远程仓库"><a href="#步骤-5-推送新分支到远程仓库" class="headerlink" title="步骤 5: 推送新分支到远程仓库"></a>步骤 5: 推送新分支到远程仓库</h3><p>一旦本地更改完成并且所有冲突都已解决，你可以将新分支推送到远程仓库：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push origin new-branch-name</span><br></pre></td></tr></table></figure>
+
+<p>这样，你就成功地创建了一个新分支并将特定的提交合并到这个分支上了。这些步骤对于从一个分支获取特定的提交并应用到另一个分支非常有用，尤其是在修复错误或将功能从一个项目分支移植到另一个分支时。</p>
+
+      </div>
+
+      <div>
+         <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i
+               class="iconfont icon-blog"></i>感谢您的阅读-------------</div>
+      </div>
+
+      <section class="post-tags">
+         <div>
+            <span>Tag(s):</span>
+            <span class="tag">
+               
+               
+               <a href="/tags/git/"><i class="iconfont icon-tags"></i> git</a>
+               
+               
+            </span>
+         </div>
+         <div>
+            <a href="javascript:window.history.back();">back</a>
+            <span>· </span>
+            <a href="/">home</a>
+         </div>
+      </section>
+
+      
+      <section class="post-copyright">
+         
+         <p class="copyright-item">
+            <span>Author:</span>
+            <span>Men Tu</span>
+         </p>
+         
+         
+         <p class="copyright-item">
+            <span>Permalink:</span>
+            <span><a href="/2024/07/04/git-cherry-pick/">https://mentu420.github.io/2024/07/04/git-cherry-pick/</a></span>
+         </p>
+         
+         
+         <p class="copyright-item">
+            <span>License:</span>
+            <span>非商业性使用-禁止演绎;转载请保留原文链接及作者。</span>
+         </p>
+         <!-- <p class="copyright-item">
+            <span>License:</span>
+            <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+         </p> -->
+         
+         
+         <p class="copyright-item">
+            <span>Slogan:</span>
+            <span>Do you believe in DESTINY?</span>
+         </p>
+         
+
+      </section>
+      
+
+
+      <!-- <section class="post-nav">
+         
+         
+         <a class="next" rel="next" href="/2024/05/21/welcome/">Welcome to Mentu420 Blod</a>
+         
+      </section> -->
+
+      
+      <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC80NjU4OS8yMzA5OQ==">
+   <script type="text/javascript">
+      (function (d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+
+         if (typeof LivereTower === 'function') { return; }
+
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+
+         e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+   </script>
+   <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
+      
+
+      <!--返回顶部按钮-->
+      
+      <script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script>
+<!-- <div id="back-to-top"></div> -->
+<script>
+   addBackToTop()
+   console.log('执行了')
+</script>
+
+      
+      
+      <!--代码块复制-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+
+<script>
+
+    /*页面载入完成后，创建复制按钮*/
+    !function (e, t, a) {
+
+        var initCopyCode = function () {
+
+            let codeEls = document.querySelectorAll('figure.highlight')
+            // $(".highlight .code pre").before(copyHtml);
+            console.log('codeEls', codeEls)
+            codeEls.forEach((el,i) => {
+                let ul = document.createElement("ul")
+                ul.classList.add('clipboard-use')
+                ul.innerHTML = `
+                    <li class="clipboard-title">
+                        <span></span>
+                        <label>Code</label>
+                    </li>
+                    <li class="clipboard-btn">
+                        <button class="btn-copy " data-clipboard-target=".code${i}">
+                            <label class="clipboard-tips" >复制成功</label>
+                            <i></i><span>copy</span>
+                        </button> 
+                    </li>
+                `
+                let code = el.querySelector('.code')
+                code.classList.add(`code${i}`)
+                el.prepend(ul)
+            })
+            console.log(ClipboardJS)
+            const clipboard = new ClipboardJS('.btn-copy');
+
+            clipboard.on('success', function (e) {
+                console.info('Action:', e.action);
+                console.info('Text:', e.text);
+                console.info('Trigger:', e.trigger);
+                e.trigger.classList.add('active')
+                setTimeout(() => {
+                    e.trigger.classList.remove('active')
+                }, 1500);
+                e.clearSelection();
+            });
+
+            clipboard.on('error', function (e) {
+                console.error('Action:', e.action);
+                console.error('Trigger:', e.trigger);
+            });
+
+        }
+        initCopyCode();
+    }(window, document);
+
+</script>
+
+   </article>
+</div>
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Men Tu | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script></body>
+
+</html>

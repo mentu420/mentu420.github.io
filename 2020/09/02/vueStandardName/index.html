@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+   content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+<title>vue项目命名规范总结 | Mentu420</title>
+
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+
+
+<!-- stylesheets list from _config.yml -->
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+<!-- scripts list from _config.yml -->
+
+<script src="/js/script.js"></script>
+
+<script src="/js/tocbot.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+   (function (i, s, o, g, r, a, m) { i["DaoVoiceObject"] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o), m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; a.charset = "utf-8"; m.parentNode.insertBefore(a, m) })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js", "daovoice")
+   daovoice('init', {
+      app_id: "86264bdc"
+   });
+   daovoice('update');
+</script>
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Disciple&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/">Home</a>
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Disciple&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/">Home</a>
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+   
+   
+   <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+   
+
+    
+   <article class="post-wrap">
+      <header class="post-header">
+         <h1 class="post-title">vue项目命名规范总结</h1>
+         
+         <div class="post-meta">
+            
+            Author: <a itemprop="author" rel="author" href="/">Men Tu</a>
+            
+
+            
+            <span class="post-time">
+               Date: <a
+                  href="#">September 2, 2020&nbsp;&nbsp;10:47:57</a>
+            </span>
+            
+            
+            <span class="post-category">
+               Category:
+               
+               <a href="/categories/%E6%80%BB%E7%BB%93/">总结</a>
+               
+            </span>
+            
+         </div>
+         
+      </header>
+
+      <div class="post-content">
+         <blockquote>
+<p>做公司项目时，发现项目的文件很乱；命名不统一。找文件组件造成很大障碍，文件识别性低；参考了一些网上规范与官网说明，自己总结一套，以后就套用这套</p>
+</blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li><a href="#prod">项目结构</a></li>
+<li><a href="#src">src文件结构</a></li>
+<li><a href="#view">views文件里面命名规则</a></li>
+<li><a href="#vue">vue文件命名规则</a></li>
+<li><a href="#js">js文件命名规则</a></li>
+<li><a href="#script">vue单文件script结构</a></li>
+<li><a href="#method">vue单文件method自定义方法命名规则</a></li>
+<li><a href="#reference">参考</a></li>
+</ul>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a><span id="prod">项目结构</span></h3><blockquote>
+<p>项目结构就按vue项目一样就好，主要是src里面的文件命名规范</p>
+</blockquote>
+<h3 id="src文件"><a href="#src文件" class="headerlink" title="src文件"></a><span id="src">src文件</span></h3><blockquote>
+<p>所以的子文件夹</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">src</span><br><span class="line">    - api             //存放请求接口相关文件</span><br><span class="line">    - assets          //静态资源文件夹</span><br><span class="line">        - images      //图片  可以再创建文件夹common、icon、basic等</span><br><span class="line">        - fonts       //应用的字体</span><br><span class="line">        - iconfont    //图标字体</span><br><span class="line">        - styles      //样式表文件</span><br><span class="line">    - components      //组件文件</span><br><span class="line">        - basic       //基础组件（一些button、switch、radio等）</span><br><span class="line">        - common      //常用组件（搜索、手风琴、列表等）</span><br><span class="line">        - layout      //布局组件（顶部、底部、滑动等）</span><br><span class="line">        ...         </span><br><span class="line">    - constants       //常量（存放一些权限、url配置或其他不变的文件）</span><br><span class="line">    - mixins          //vue mixins (组件公用的一些逻辑)</span><br><span class="line">    - views           //页面文件  （命名下面详细说）</span><br><span class="line">    - router          //路由文件</span><br><span class="line">    - store           //vuex文件</span><br><span class="line">        - modules     //vuex 模块 （一定要设置模块名namespaced:true）</span><br><span class="line">    - utils           //工具函数（自己封装的）</span><br><span class="line">    - libs            //工具函数（第三方库引用，进行了一些修改）</span><br></pre></td></tr></table></figure>
+
+<h3 id="views文件里面命名规则"><a href="#views文件里面命名规则" class="headerlink" title="views文件里面命名规则"></a><span id="views">views文件里面命名规则</span></h3><p> views文件命名也套用于components，components尽量只做一级目录。</p>
+<p>1.一级目录</p>
+<blockquote>
+<p>代表模块的名字<br>尽量由名词组成<br>单词只有一个<br>文件夹名字以小写字母开头,.vue文件名字以大写字母开头<br>只有一个文件时不出现文件夹，直接放在 views 下面,为***.vue文件<br>如 main | login | common,Main.vue | Login.vue | Common.vue</p>
+</blockquote>
+<p>2.二级目录</p>
+<blockquote>
+<p>代表着一级目录中某一大模块的名字<br>尽量由名词组成<br>名字至少两个单词<br>文件夹名字以小写字母开头,.vue文件名字以大写字母开头<br>只有一个文件时不出现文件夹，直接放在 一级目录 下面,为***.vue文件<br>常用结尾单词有 Detail | Edit | List | Info | Report,如 SolutionList<br>以 Item 结尾的代表着组件,如 SolutionItem</p>
+</blockquote>
+<h3 id="vue文件命名规则"><a href="#vue文件命名规则" class="headerlink" title="vue文件命名规则"></a><span id="vue">vue文件命名规则</span></h3><blockquote>
+<p>除index.vue之外，其他.vue文件统一用PascalBase风格</p>
+</blockquote>
+<h3 id="js文件命名规则"><a href="#js文件命名规则" class="headerlink" title="js文件命名规则"></a><span id="js">js文件命名规则</span></h3><blockquote>
+<p>属于类的.js文件，除index.js外，使用PascalBase风格<br>其他类型的.js文件，使用kebab-case风格<br>属于Api的，统一加上api后缀</p>
+</blockquote>
+<h3 id="vue单文件script结构"><a href="#vue单文件script结构" class="headerlink" title="vue单文件script结构"></a><span id="script">vue单文件script结构</span></h3><p>1.name<br>2.components<br>3.props<br>4.data<br>5.filter<br>6.computed<br>7.watch<br>8.created<br>9.mounted<br>10.activited<br>11.update<br>12.beforeRouteUpdate<br>13.metods</p>
+<blockquote>
+<p>metods 总放最后，如果有路由守护函数beforeRouteLeave放methods前面</p>
+</blockquote>
+<p>vscode 可以自定义代码片段进行快速编码<br><a href="http://localhost:4000/2020/09/02/vueCodeSinppet/">vue代码片段</a></p>
+<h3 id="vue单文件method自定义方法命名规则"><a href="#vue单文件method自定义方法命名规则" class="headerlink" title="vue单文件method自定义方法命名规则"></a><span id="method">vue单文件method自定义方法命名规则</span></h3><blockquote>
+<p>mapMutations 放在最前面<br>init 作为组件初始化函数<br>驼峰命名（good: getListData）（bad: get_list_data、getlistData）<br>事件方法以 on 开头（onTypeChange、onUsernameInput）<br>尽量使用常用单词开头（set、get、open、close、jump）<br>动宾短语（good：jumpPage、openCarInfoDialog）（bad：go、nextPage、show、open、login）<br>ajax 方法以 get、post 开头，以 data 结尾（good：getListData、postFormData）（bad：takeData、confirmData、getList、postForm）</p>
+</blockquote>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a><span id="reference">参考</span></h3><p><a href="https://cn.vuejs.org/v2/style-guide/">vue风格指南</a><br><a href="https://www.jianshu.com/p/6848c2cf3753">【Vue】教程:二、命名规范</a><br><a href="https://www.jianshu.com/p/99e67fc22ced">Vue命名规范</a><br><a href="https://www.jianshu.com/p/304d537284d7">VUE项目规范</a><br><a href="https://www.jianshu.com/p/bc62266c2948">Vue项目文件命名规范</a></p>
+
+      </div>
+
+      <div>
+         <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i
+               class="iconfont icon-blog"></i>感谢您的阅读-------------</div>
+      </div>
+
+      <section class="post-tags">
+         <div>
+            <span>Tag(s):</span>
+            <span class="tag">
+               
+               
+               <a href="/tags/vue/"><i class="iconfont icon-tags"></i> vue</a>
+               
+               
+            </span>
+         </div>
+         <div>
+            <a href="javascript:window.history.back();">back</a>
+            <span>· </span>
+            <a href="/">home</a>
+         </div>
+      </section>
+
+      
+      <section class="post-copyright">
+         
+         <p class="copyright-item">
+            <span>Author:</span>
+            <span>Men Tu</span>
+         </p>
+         
+         
+         <p class="copyright-item">
+            <span>Permalink:</span>
+            <span><a href="/2020/09/02/vueStandardName/">https://mentu420.github.io/2020/09/02/vueStandardName/</a></span>
+         </p>
+         
+         
+         <p class="copyright-item">
+            <span>License:</span>
+            <span>非商业性使用-禁止演绎;转载请保留原文链接及作者。</span>
+         </p>
+         <!-- <p class="copyright-item">
+            <span>License:</span>
+            <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+         </p> -->
+         
+         
+         <p class="copyright-item">
+            <span>Slogan:</span>
+            <span>Do you believe in DESTINY?</span>
+         </p>
+         
+
+      </section>
+      
+
+
+      <!-- <section class="post-nav">
+         
+         <a class="prev" rel="prev" href="/2020/09/02/vueCodeSinppet/">vscode vue文件代码片段</a>
+         
+         
+         <a class="next" rel="next" href="/2020/08/24/vueMoreENV/">vue-cli4 配置多环境变量</a>
+         
+      </section> -->
+
+      
+      <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC80NjU4OS8yMzA5OQ==">
+   <script type="text/javascript">
+      (function (d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+
+         if (typeof LivereTower === 'function') { return; }
+
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+
+         e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+   </script>
+   <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
+      
+
+      <!--返回顶部按钮-->
+      
+      <script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script>
+<!-- <div id="back-to-top"></div> -->
+<script>
+   addBackToTop()
+   console.log('执行了')
+</script>
+
+      
+      
+      <!--代码块复制-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+
+<script>
+
+    /*页面载入完成后，创建复制按钮*/
+    !function (e, t, a) {
+
+        var initCopyCode = function () {
+
+            let codeEls = document.querySelectorAll('figure.highlight')
+            // $(".highlight .code pre").before(copyHtml);
+            console.log('codeEls', codeEls)
+            codeEls.forEach((el,i) => {
+                let ul = document.createElement("ul")
+                ul.classList.add('clipboard-use')
+                ul.innerHTML = `
+                    <li class="clipboard-title">
+                        <span></span>
+                        <label>Code</label>
+                    </li>
+                    <li class="clipboard-btn">
+                        <button class="btn-copy " data-clipboard-target=".code${i}">
+                            <label class="clipboard-tips" >复制成功</label>
+                            <i></i><span>copy</span>
+                        </button> 
+                    </li>
+                `
+                let code = el.querySelector('.code')
+                code.classList.add(`code${i}`)
+                el.prepend(ul)
+            })
+            console.log(ClipboardJS)
+            const clipboard = new ClipboardJS('.btn-copy');
+
+            clipboard.on('success', function (e) {
+                console.info('Action:', e.action);
+                console.info('Text:', e.text);
+                console.info('Trigger:', e.trigger);
+                e.trigger.classList.add('active')
+                setTimeout(() => {
+                    e.trigger.classList.remove('active')
+                }, 1500);
+                e.clearSelection();
+            });
+
+            clipboard.on('error', function (e) {
+                console.error('Action:', e.action);
+                console.error('Trigger:', e.trigger);
+            });
+
+        }
+        initCopyCode();
+    }(window, document);
+
+</script>
+
+   </article>
+</div>
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Men Tu | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script></body>
+
+</html>
